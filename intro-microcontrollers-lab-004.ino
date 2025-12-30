@@ -9,14 +9,20 @@ void setup() {
 
   digitalWrite(LED_BUILTIN, LOW);
   digitalWrite(LED_PIN_NUMBER, LOW);
+
+  Serial.begin(115200);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
+  uint16_t adcReading = analogRead(POT_PIN_NUMBER);
+
+  Serial.println(adcReading);
+
   digitalWrite(LED_PIN_NUMBER, HIGH);
-  delay(LED_ON_DURATION_MILLISECONDS);
+  delay(100);
 
   digitalWrite(LED_PIN_NUMBER, LOW);
-  delay(LED_OFF_DURATION_MILLISECONDS);
+  delay(100 + (1023 - adcReading));
 }
